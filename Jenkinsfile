@@ -3,8 +3,8 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                withMaven(maven: '3.5.4', jdk: '1.8') {
-                    sh 'mvn clean package'
+                withMaven(maven: '3', jdk: '1.8') {
+                    sh "mvn -B release:prepare -DpreparationGoals='clean'"
                 }
             }
         }
