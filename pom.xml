@@ -21,7 +21,7 @@
 
     <scm>
         <tag>HEAD</tag>
-        <developerConnection>scm:git:file://${project.basedir}</developerConnection>
+        <developerConnection>scm:git:file:///Users/eduardo/Development/GitRepos/spring-boot-web-app</developerConnection>
     </scm>
 
     <dependencies>

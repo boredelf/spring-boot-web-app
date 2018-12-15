@@ -14,9 +14,7 @@ pipeline {
             }
         }
     }
-//    post {
-//        always {
-//            cleanWs(skipWhenFailed: true)
-//        }
-//    }
+    post {
+        always { cleanWs(skipWhenFailed: true) }
+    }
 }
