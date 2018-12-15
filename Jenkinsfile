@@ -1,28 +1,34 @@
 pipeline {
-    agent any
-    stages {
-        stage('Build') {
-            steps {
-                withCredentials([
-                    usernamePassword(
-                        credentialsId: 'github',
-                        usernameVariable: 'githubUsername',
-                        passwordVariable: 'githubPassword'
-                    )
-                ]) {
-                    withMaven(maven: '3', jdk: '1.8') {
-                        sh "mvn -B release:prepare -DpreparationGoals='clean'"
-                    }
-                }
+   agent any
+
+   def jdkVersion = '1.8'
+   def mavenVersion = '3'
+
+   stages {
+      stage('Build') {
+         steps {
+            withMaven(maven: mavenVersion, jdk: jdkVersion) {
+               sh 'mvn package'
             }
-        }
-        stage('Release') {
-            steps {
-                sh 'echo Release'
+         }
+      }
+      stage('Release') {
+         steps {
+            withCredentials([
+               usernamePassword(
+                  credentialsId: 'github',
+                  usernameVariable: 'githubUsername',
+                  passwordVariable: 'githubPassword'
+               )
+            ]) {
+               withMaven(maven: mavenVersion, jdk: jdkVersion) {
+                  sh "mvn -B release:prepare"
+               }
             }
-        }
-    }
-    post {
-        always { cleanWs(skipWhenFailed: true) }
-    }
+         }
+      }
+   }
+   post {
+      always { cleanWs(skipWhenFailed: true) }
+   }
 }
