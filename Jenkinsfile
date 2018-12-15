@@ -14,6 +14,7 @@ pipeline {
       }
       stage('Release') {
          steps {
+            input message: 'Publish new release?'
             withCredentials([
                usernamePassword(
                   credentialsId: 'github',
