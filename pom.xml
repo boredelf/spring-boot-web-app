@@ -21,7 +21,7 @@
 
     <scm>
         <tag>HEAD</tag>
-        <developerConnection>file://${project.basedir}</developerConnection>
+        <developerConnection>scm:git:file://${project.basedir}</developerConnection>
     </scm>
 
     <dependencies>
