@@ -6,6 +6,7 @@ pipeline {
             withMaven(maven: '3', jdk: '1.8') {
                sh 'mvn package'
             }
+            cleanWs
          }
       }
       stage('Release') {
