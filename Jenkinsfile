@@ -6,7 +6,6 @@ pipeline {
             withMaven(maven: '3', jdk: '1.8') {
                sh 'mvn package'
             }
-            cleanWs()
          }
       }
       stage('Release') {
@@ -20,7 +19,7 @@ pipeline {
                )
             ]) {
                withMaven(maven: '3', jdk: '1.8') {
-                  sh "mvn -B release:prepare"
+                  sh "mvn -B clean release:prepare"
                }
             }
          }
