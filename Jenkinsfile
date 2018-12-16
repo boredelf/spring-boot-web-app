@@ -3,14 +3,6 @@ pipeline {
    stages {
       stage('Build') {
          steps {
-            withMaven(maven: '3', jdk: '1.8') {
-               sh 'mvn package'
-            }
-         }
-      }
-      stage('Release') {
-         steps {
-            input message: 'Publish new release?'
             withCredentials([
                usernamePassword(
                   credentialsId: 'github',
