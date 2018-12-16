@@ -24,6 +24,11 @@ pipeline {
             }
          }
       }
+      stage('Deploy') {
+         steps {
+            sh 'echo App deployed!'
+         }
+      }
    }
    post {
       always { cleanWs(skipWhenFailed: true) }
