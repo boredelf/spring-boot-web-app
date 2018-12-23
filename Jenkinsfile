@@ -40,6 +40,8 @@ pipeline {
       }
    }
    post {
-      always { cleanWs(skipWhenFailed: true) }
+      success {
+         cleanWs(skipWhenFailed: true)
+      }
    }
 }
