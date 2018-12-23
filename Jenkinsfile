@@ -4,7 +4,16 @@ pipeline {
       stage('Build') {
          steps {
             withMaven(maven: '3', jdk: '1.8') {
-               sh 'mvn package'
+               withSonarQubeEnv('Default') {
+                  sh 'mvn package sonar:sonar'
+               }
+            }
+         }
+      }
+      stage('Quality Gate') {
+         steps {
+            timeout(time: 1, unit: 'HOURS') {
+               waitForQualityGate abortPipeline: true
             }
          }
       }
