@@ -25,7 +25,7 @@ pipeline {
       stage('Release') {
          steps {
             script {
-               RELEASE = VERSION.split(".")
+               RELEASE = VERSION.split("\\.")
             }
             print "$RELEASE"
 //            sh "mvn clean versions:set -DnewVersion=${releaseVersion}"
