@@ -30,9 +30,9 @@ pipeline {
 //         }
 //      }
    }
-   post {
-      success {
-         // cleanWs(skipWhenFailed: true)
-      }
-   }
+//   post {
+//      success {
+//        cleanWs(skipWhenFailed: true)
+//      }
+//   }
 }
