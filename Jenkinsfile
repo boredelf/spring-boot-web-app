@@ -12,7 +12,7 @@ pipeline {
       }
    }
    post {
-      success {
+      always {
         cleanWs(skipWhenFailed: true)
       }
    }
