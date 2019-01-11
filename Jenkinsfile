@@ -1,7 +1,7 @@
 pipeline {
    agent any
    environment {
-      VERSION = readMavenPom().getVersion().split('.')
+      VERSION = readMavenPom().getVersion()
 //      RELEASE_VERSION = "${VERSION[0]}.${VERSION[1]}.(${VERSION[2].toInteger() + 1})"
    }
    stages {
