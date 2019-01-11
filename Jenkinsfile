@@ -7,7 +7,8 @@ pipeline {
    stages {
       stage('Release') {
          steps {
-            sh "mvn clean versions:set -DnewVersion=${RELEASE_VERSION} scm:tag"
+            sh "mvn versions:set -DnewVersion=${RELEASE_VERSION}"
+            sh "mvn scm:tag"
          }
       }
    }
