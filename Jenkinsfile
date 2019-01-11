@@ -1,9 +1,40 @@
-node {
-   stage('Release') {
-      sh 'ls -l'
-      def version = readMavenPom().getVersion()
-      print "${version}"
-//      String releaseVersion = "${version[0]}.${version[1]}." + (version[2].toInteger() + 1)
-//      sh "mvn clean versions:set -DnewVersion=${releaseVersion}"
+pipeline {
+   agent any
+   environment {
+      VERSION = readMavenPom().getVersion().split('.')
+      RELEASE_VERSION = "${VERSION[0]}.${VERSION[1]}." + (VERSION[2].toInteger() + 1)
    }
+   stages {
+//      stage('Build') {
+//         steps {
+//            withMaven(maven: '3', jdk: '1.8') {
+//               withSonarQubeEnv('Default') {
+//                  sh 'mvn package sonar:sonar'
+//               }
+//            }
+//         }
+//      }
+//      stage('Quality Gate') {
+//         steps {
+//            timeout(time: 1, unit: 'HOURS') {
+//               waitForQualityGate abortPipeline: true
+//            }
+//         }
+//      }
+      stage('Release') {
+         steps {
+            sh "mvn clean versions:set -DnewVersion=${releaseVersion}"
+         }
+      }
+//      stage('Deploy') {
+//         steps {
+//            sh 'echo App deployed!'
+//         }
+//      }
+   }
+//   post {
+//      success {
+//        cleanWs(skipWhenFailed: true)
+//      }
+//   }
 }
