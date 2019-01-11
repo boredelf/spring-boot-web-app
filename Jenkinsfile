@@ -28,7 +28,8 @@ pipeline {
                )
             ]) {
                withMaven(maven: '3', jdk: '1.8') {
-                  sh "mvn -B clean release:prepare"
+                  def releaseVersion = readMavenPom().getVersion().split('.').getAt(2).toInteger() + 1
+                  sh "mvn clean versions:set -DnewVersion=${releaseVersion}"
                }
             }
          }
@@ -41,7 +42,7 @@ pipeline {
    }
    post {
       success {
-         cleanWs(skipWhenFailed: true)
+         // cleanWs(skipWhenFailed: true)
       }
    }
 }
