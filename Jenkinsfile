@@ -23,7 +23,7 @@ pipeline {
 //      }
       stage('Release') {
          steps {
-            print "$RELEASE"
+            print "$RELEASE_VERSION"
 //            sh "mvn clean versions:set -DnewVersion=${releaseVersion}"
          }
       }
