@@ -1,9 +1,8 @@
 pipeline {
    agent any
    environment {
-      VERSION = readMavenPom().getVersion()
-      RELEASE = ''
-//      RELEASE_VERSION = "${VERSION[0]}.${VERSION[1]}.(${VERSION[2].toInteger() + 1})"
+      VERSION = readMavenPom().getVersion().split("\\.")
+      RELEASE_VERSION = "${VERSION[0]}.${VERSION[1]}.(${VERSION[2].toInteger() + 1})"
    }
    stages {
 //      stage('Build') {
@@ -24,9 +23,6 @@ pipeline {
 //      }
       stage('Release') {
          steps {
-            script {
-               RELEASE = VERSION.split("\\.")
-            }
             print "$RELEASE"
 //            sh "mvn clean versions:set -DnewVersion=${releaseVersion}"
          }
