@@ -7,7 +7,7 @@ pipeline {
       stage('Release') {
          steps {
             script {
-               input(
+               INPUT = input(
                   message: 'Select tag to build.',
                   parameters: [
                      choice(
@@ -17,7 +17,7 @@ pipeline {
                   ]
                )
             }
-            sh "echo '${TAG}'"
+            sh "echo '${INPUT.TAG}'"
          }
       }
    }
