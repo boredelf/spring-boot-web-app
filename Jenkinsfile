@@ -5,10 +5,10 @@ pipeline {
 
    stages {
       stage('Release') {
-         parameters {
-            choice(name: 'TAG', choices: ((String) sh(returnStdout: true, script: 'git tag -l')).split("\n"))
-         }
          steps {
+            parameters {
+               choice(name: 'TAG', choices: ((String) sh(returnStdout: true, script: 'git tag -l')).split("\n"))
+            }
             sh "echo '${TAG}'"
          }
       }
