@@ -8,7 +8,7 @@ pipeline {
          }
          input {
             message 'Select tag to build.'
-            parameters { choice(name: 'TAG', description: env.LERO, choices: [1,2]) }
+            parameters { choice(name: 'TAG', description: LERO, choices: [1,2]) }
          }
          steps {
             print "${TAG}"
