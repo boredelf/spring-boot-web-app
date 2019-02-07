@@ -5,9 +5,7 @@ pipeline {
       stage('Release') {
          steps {
             script {
-               TAG = sh(returnStdout: true, script: """
-               echo lero
-            """).trim()
+               TAG = sh(returnStdout: true, script: 'git tag -l').trim()
             }
             sh "echo '${TAG}'"
          }
