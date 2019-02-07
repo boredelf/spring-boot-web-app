@@ -1,11 +1,15 @@
 pipeline {
    agent any
 
+   environment {
+      LERO = 'lero'
+   }
+
    stages {
       stage('Release') {
          input {
             message 'Select tag to build.'
-            parameters { choice(name: 'TAG', description: env.GIT_LIST_TAGS, choices: [1,2]) }
+            parameters { choice(name: 'TAG', description: env.LERO, choices: [1,2]) }
          }
          steps {
             print "${TAG}"
