@@ -7,7 +7,7 @@ pipeline {
             message 'Select tag to build.'
             parameters {
                choice(name: 'TAG', description: 'Tag to build.',
-                  choices: "1\n2"
+                  choices: "1\n2")
             }
          }
          steps {
