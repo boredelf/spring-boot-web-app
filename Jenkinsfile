@@ -8,6 +8,7 @@ pipeline {
                gitParameter(
                   name: 'TAG',
                   type: 'Tag',
+                  useRepository: 'repo',
                   sortMode: 'DESCENDING_SMART'
                )
             }
