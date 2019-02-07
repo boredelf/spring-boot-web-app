@@ -1,8 +1,10 @@
 pipeline {
    agent any
 
+   // ((String) sh(returnStdout: true, script: 'git tag -l')).split("\n")
+
    parameters {
-      choice(name: 'TAG', choices: ((String) sh(returnStdout: true, script: 'git tag -l')).split("\n"))
+      choice(name: 'TAG', choices: [1, 2, 3])
    }
 
    stages {
