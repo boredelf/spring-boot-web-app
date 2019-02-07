@@ -10,7 +10,7 @@ pipeline {
                      choices: sh(returnStdout: true, script: env.GIT_LIST_TAGS))
                   ])
             }
-            sh "echo '${TAG}'"
+            sh "git checkout tags/${TAG} && cat Jenkinsfile"
          }
       }
    }
