@@ -3,12 +3,11 @@ pipeline {
 
    // ((String) sh(returnStdout: true, script: 'git tag -l')).split("\n")
 
-   parameters {
-      choice(name: 'TAG', choices: [1, 2, 3])
-   }
-
    stages {
       stage('Release') {
+         parameters {
+            choice(name: 'TAG', choices: [1, 2, 3])
+         }
          steps {
             sh "echo '${TAG}'"
          }
