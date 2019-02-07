@@ -7,12 +7,12 @@ pipeline {
 
    stages {
       stage('Release') {
-         input {
-            message 'Select tag to build.'
-            parameters { choice(name: 'TAG', description: 'Tag to build.', choices: env.TAGS) }
-         }
+//         input {
+//            message 'Select tag to build.'
+//            parameters { choice(name: 'TAG', description: 'Tag to build.', choices: env.TAGS) }
+//         }
          steps {
-            print "${TAG}"
+            print "${TAGS}"
 //            sh "git checkout -q tags/${TAG} && cat Jenkinsfile"
          }
       }
