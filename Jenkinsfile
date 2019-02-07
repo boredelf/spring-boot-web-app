@@ -7,7 +7,7 @@ pipeline {
             script {
                TAG = sh(returnStdout: true, script: """
                echo lero
-            """.trim())
+            """).trim()
             }
             sh "echo '${TAG}'"
          }
