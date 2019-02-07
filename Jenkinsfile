@@ -13,7 +13,7 @@ pipeline {
                   parameters: [choice(name: 'TAG', description: 'Tag to build.', choices: TAGS)]
                )
             }
-            sh "echo '${INPUT.TAG}'"
+            sh "echo '${INPUT}'"
          }
       }
    }
