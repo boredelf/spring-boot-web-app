@@ -6,8 +6,16 @@ pipeline {
    stages {
       stage('Release') {
          steps {
-            parameters {
-               choice(name: 'TAG', choices: ((String) sh(returnStdout: true, script: 'git tag -l')).split("\n"))
+            script {
+               input(
+                  message: 'Select tag to build.',
+                  parameters: [
+                     choice(
+                        name: 'TAG',
+                        description: 'Tag to build.',
+                        choices: ((String) sh(returnStdout: true, script: 'git tag -l')).split("\n"))
+                  ]
+               )
             }
             sh "echo '${TAG}'"
          }
