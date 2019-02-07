@@ -1,12 +1,11 @@
 pipeline {
    agent any
 
-
    stages {
       stage('Release') {
          input {
             message 'Select tag to build.'
-            parameters { choice(name: 'TAG', description: 'Tag to build.', choices: sh(returnStdout: true, script: env.GIT_LIST_TAGS).split("\n")) }
+            parameters { choice(name: 'TAG', description: env.GIT_LIST_TAGS, choices: [1,2]) }
          }
          steps {
             print "${TAG}"
