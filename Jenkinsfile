@@ -1,5 +1,6 @@
 pipeline {
    agent any
+
    stages {
       stage('Release') {
          steps {
@@ -12,9 +13,10 @@ pipeline {
          }
       }
    }
+
    post {
       always {
-         cleanWs
+         steps { cleanWs }
       }
    }
 }
