@@ -7,12 +7,13 @@ pipeline {
             message 'Select tag to build.'
             parameters {
                choice(name: 'TAG', description: 'Tag to build.',
-                  choices: sh(returnStdout: true, script: "${env.GIT_LIST_TAGS}")
+                  choices: sh(returnStdout: true, script: [1,2])
                )
             }
          }
          steps {
-            sh "git checkout -q tags/${TAG} && cat Jenkinsfile"
+            print "${TAG}"
+//            sh "git checkout -q tags/${TAG} && cat Jenkinsfile"
          }
       }
    }
